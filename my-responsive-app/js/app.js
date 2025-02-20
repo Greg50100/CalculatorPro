@@ -1,4 +1,4 @@
-// Main application script to handle tab navigation, theme switching, and dynamically loading tab content
+// app.js
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('app.js chargé');
@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
 
     // Fonction de chargement de contenu d'onglet
+// app.js
+
     const loadTabContent = async (tabId) => {
         try {
             const response = await fetch(`${tabId}.html`);
@@ -17,10 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.getElementById(tabId);
             if (target) {
                 target.innerHTML = content;
-                // Charger le script spécifique si nécessaire
-                const script = document.createElement('script');
-                script.src = `js/${tabId}.js`;
-                document.body.appendChild(script);
+                // Suppression de l'ajout dynamique du script
             } else {
                 console.error(`Onglet ${tabId} introuvable.`);
             }
@@ -32,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
+
 
     // Fonction de commutation d'onglets
     const switchTab = (event) => {

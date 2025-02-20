@@ -1,11 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('calculator.js chargé');
+// calculator.js
 
+console.log('calculator.js chargé');
+
+(function() {
     const display = document.getElementById('calculator-display');
     const buttons = document.querySelectorAll('.calculator-button');
-
-    console.log('display:', display);
-    console.log('buttons:', buttons);
 
     if (!display || buttons.length === 0) {
         console.error('Éléments de la calculatrice non trouvés.');
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (['+', '-', '*', '/'].includes(value)) {
                 if (currentInput === '') return;
                 if (previousInput !== '') {
-                    calculate(); // appel de la fonction ci-dessous
+                    calculate();
                 }
                 operator = value;
                 previousInput = currentInput;
@@ -53,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case '*': result = num1 * num2; break;
             case '/':
                 if (num2 === 0) {
-                    display.textContent = 'Error';
+                    display.textContent = 'Erreur : Division par zéro';
                     currentInput = '';
                     operator = '';
                     previousInput = '';
@@ -68,4 +67,4 @@ document.addEventListener('DOMContentLoaded', () => {
         operator = '';
         display.textContent = currentInput;
     };
-});
+})();
