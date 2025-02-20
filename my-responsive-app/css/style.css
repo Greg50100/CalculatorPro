@@ -1,10 +1,55 @@
+/* Define CSS variables for light theme */
+:root {
+    --bg-color: #f9f9f9; /* Light gray */
+    --text-color: #333; /* Dark gray */
+    --header-bg-color: #ecf0f1; /* Lighter gray */
+    --header-text-color: #333; /* Dark gray */
+    --accent-color: #e67e22; /* Orange */
+    --tab-bg-color: #f2f2f2; /* Light gray */
+    --tab-text-color: #555; /* Medium gray */
+    --tab-active-bg-color: #e67e22; /* Orange */
+    --tab-active-text-color: white;
+    --input-bg-color: #ffffff; /* White */
+    --input-border-color: #bdc3c7; /* Light gray */
+    --button-bg-color: #e67e22; /* Orange */
+    --button-text-color: white;
+    --button-hover-bg-color: #d35400; /* Darker orange */
+    --calculator-bg-color: #f2f2f2; /* Light gray */
+    --calculator-display-bg-color: #34495e; /* Dark gray-blue */
+    --calculator-display-text-color: white;
+    --calculator-buttons-bg-color: #ffffff; /* White */
+}
+
+/* Dark theme */
+body[data-theme="dark"] {
+    --bg-color: #333; /* Dark gray */
+    --text-color: #f2f2f2; /* Light gray */
+    --header-bg-color: #444; /* Medium gray */
+    --header-text-color: #f2f2f2; /* Light gray */
+    --accent-color: #e67e22; /* Orange */
+    --tab-bg-color: #555; /* Medium gray */
+    --tab-text-color: #f2f2f2; /* Light gray */
+    --tab-active-bg-color: #e67e22; /* Orange */
+    --tab-active-text-color: white;
+    --input-bg-color: #444; /* Medium gray */
+    --input-border-color: #e67e22; /* Orange */
+    --button-bg-color: #e67e22; /* Orange */
+    --button-text-color: white;
+    --button-hover-bg-color: #d35400; /* Darker orange */
+    --calculator-bg-color: #444; /* Medium gray */
+    --calculator-display-bg-color: #222; /* Dark gray */
+    --calculator-display-text-color: #f2f2f2; /* Light gray */
+    --calculator-buttons-bg-color: #555; /* Medium gray */
+}
+
 html, body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100%;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .app-container {
@@ -20,14 +65,16 @@ html, body {
 }
 
 header {
-    background-color: #333;
-    color: white;
     padding: 20px;
     text-align: center;
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 header h1 {
     margin: 0;
+    font-size: 2.5em;
 }
 
 nav {
@@ -49,26 +96,32 @@ nav li {
 .tabs .tab {
     padding: 10px 15px;
     cursor: pointer;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 5px;
-    background-color: #eee;
-    color: #333;
+    background-color: var(--tab-bg-color);
+    color: var(--tab-text-color);
     transition: background-color 0.3s, color 0.3s;
+    font-size: 1.1em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tabs .tab:hover {
+    background-color: #d0d3d4;
 }
 
 .tabs .tab.active {
-    background-color: #ff8c00;
-    color: white;
-    border-color: #ff8c00;
+    background-color: var(--tab-active-bg-color);
+    color: var(--tab-active-text-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .tab-content {
     display: none;
     padding: 20px;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: white;
+    background-color: var(--bg-color);
     margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .tab-content.active {
@@ -77,10 +130,11 @@ nav li {
 
 .theme-switcher {
     margin-top: 20px;
+    text-align: center;
 }
 
 .theme-switcher button {
-    background-color: #666;
+    background-color: #777;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -88,51 +142,59 @@ nav li {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 1em;
 }
 
 .theme-switcher button:hover {
-    background-color: #999;
+    background-color: #555;
 }
 
 /* Form elements */
 .input-field {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid var(--input-border-color);
     border-radius: 5px;
-    box-sizing: border-box; /* Ensures padding is included in the element's total width */
+    box-sizing: border-box;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    font-size: 1em;
 }
 
 .button {
-    background-color: #ff8c00;
-    color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 12px 20px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    font-size: 1.1em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .button:hover {
-    background-color: #e07b00;
+    background-color: var(--button-hover-bg-color);
 }
 
 /* Calculator styles */
 .calculator {
-    width: 300px;
+    width: 320px;
     margin: 20px auto;
-    border: 1px solid #ccc;
     border-radius: 5px;
     overflow: hidden;
+    background-color: var(--calculator-bg-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #calculator-display {
-    background-color: #333;
-    color: white;
+    background-color: var(--calculator-display-bg-color);
+    color: var(--calculator-display-text-color);
     text-align: right;
     padding: 20px;
-    font-size: 24px;
+    font-size: 2em;
 }
 
 .calculator-buttons {
@@ -141,12 +203,14 @@ nav li {
 }
 
 .calculator-buttons button {
-    background-color: #f0f0f0;
-    border: none;
+    background-color: var(--calculator-buttons-bg-color);
     padding: 20px;
-    font-size: 18px;
+    font-size: 1.5em;
     cursor: pointer;
     transition: background-color 0.3s;
+    color: var(--text-color);
+    border-radius: 0;
+    border: 1px solid #ddd;
 }
 
 .calculator-buttons button:hover {

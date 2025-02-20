@@ -1,26 +1,35 @@
+<!-- calculator.html -->
+
 <div class="container">
-    <h2>Basic Calculator</h2>
+    <h2>Calculatrice Basique</h2>
     <div class="calculator">
         <div id="calculator-display">0</div>
         <div class="calculator-buttons">
-            <button class="calculator-button">7</button>
-            <button class="calculator-button">8</button>
-            <button class="calculator-button">9</button>
-            <button class="calculator-button">/</button>
-            <button class="calculator-button">4</button>
-            <button class="calculator-button">5</button>
-            <button class="calculator-button">6</button>
-            <button class="calculator-button">*</button>
-            <button class="calculator-button">1</button>
-            <button class="calculator-button">2</button>
-            <button class="calculator-button">3</button>
-            <button class="calculator-button">-</button>
-            <button class="calculator-button">0</button>
-            <button class="calculator-button">.</button>
-            <button class="calculator-button">=</button>
-            <button class="calculator-button">+</button>
-            <button class="calculator-button">C</button>
+            <!-- Ligne 1 -->
+            <button class="calculator-button clear" data-value="C">C</button>
+            <button class="calculator-button operator" data-value="/">÷</button>
+            <button class="calculator-button operator" data-value="*">×</button>
+            <button class="calculator-button operator" data-value="-">−</button>
+            <!-- Ligne 2 -->
+            <button class="calculator-button" data-value="7">7</button>
+            <button class="calculator-button" data-value="8">8</button>
+            <button class="calculator-button" data-value="9">9</button>
+            <button class="calculator-button operator" data-value="+">+</button>
+            <!-- Ligne 3 -->
+            <button class="calculator-button" data-value="4">4</button>
+            <button class="calculator-button" data-value="5">5</button>
+            <button class="calculator-button" data-value="6">6</button>
+            <button class="calculator-button equal" data-value="=" rowspan="2">=</button>
+            <!-- Ligne 4 -->
+            <button class="calculator-button" data-value="1">1</button>
+            <button class="calculator-button" data-value="2">2</button>
+            <button class="calculator-button" data-value="3">3</button>
+            <!-- Ligne 5 -->
+            <button class="calculator-button zero" data-value="0" colspan="2">0</button>
+            <button class="calculator-button" data-value=".">.</button>
         </div>
     </div>
 </div>
+
+<!-- Inclusion du script spécifique à la calculatrice -->
 <script src="js/calculator.js"></script>

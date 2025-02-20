@@ -1,33 +1,52 @@
+<!-- convertissor.html -->
+
 <div class="container">
-    <h2>Unit Convertissor</h2>
-    <input type="number" id="inputValue" class="input-field" placeholder="Enter value">
-    <select id="fromUnit" class="input-field">
-        <option value="meters">Meters</option>
-        <option value="kilometers">Kilometers</option>
-        <option value="miles">Miles</option>
-        <option value="feet">Feet</option>
-        <option value="inches">Inches</option>
-        <option value="grams">Grams</option>
-        <option value="kilograms">Kilograms</option>
-        <option value="pounds">Pounds</option>
-        <option value="liters">Liters</option>
-        <option value="milliliters">Milliliters</option>
-        <option value="gallons">Gallons</option>
-    </select>
-    <select id="toUnit" class="input-field">
-         <option value="meters">Meters</option>
-        <option value="kilometers">Kilometers</option>
-        <option value="miles">Miles</option>
-        <option value="feet">Feet</option>
-        <option value="inches">Inches</option>
-        <option value="grams">Grams</option>
-        <option value="kilograms">Kilograms</option>
-        <option value="pounds">Pounds</option>
-        <option value="liters">Liters</option>
-        <option value="milliliters">Milliliters</option>
-        <option value="gallons">Gallons</option>
-    </select>
-    <button id="convertButton" class="button">Convert</button>
-    <div id="result">Result:</div>
+    <h2>Convertisseur d'Unités</h2>
+    <div class="converter">
+        <input type="number" id="inputValue" class="input-field" placeholder="Entrez une valeur">
+        <select id="fromUnit" class="input-field" title="Unité de départ">
+            <optgroup label="Longueur">
+                <option value="meters">Mètres</option>
+                <option value="kilometers">Kilomètres</option>
+                <option value="miles">Miles</option>
+                <option value="feet">Pieds</option>
+                <option value="inches">Pouces</option>
+            </optgroup>
+            <optgroup label="Masse">
+                <option value="grams">Grammes</option>
+                <option value="kilograms">Kilogrammes</option>
+                <option value="pounds">Livres</option>
+            </optgroup>
+            <optgroup label="Volume">
+                <option value="liters">Litres</option>
+                <option value="milliliters">Millilitres</option>
+                <option value="gallons">Gallons</option>
+            </optgroup>
+        </select>
+        <select id="toUnit" class="input-field" title="Unité d'arrivée">
+            <!-- Même contenu que 'fromUnit' -->
+            <optgroup label="Longueur">
+                <option value="meters">Mètres</option>
+                <option value="kilometers">Kilomètres</option>
+                <option value="miles">Miles</option>
+                <option value="feet">Pieds</option>
+                <option value="inches">Pouces</option>
+            </optgroup>
+            <optgroup label="Masse">
+                <option value="grams">Grammes</option>
+                <option value="kilograms">Kilogrammes</option>
+                <option value="pounds">Livres</option>
+            </optgroup>
+            <optgroup label="Volume">
+                <option value="liters">Litres</option>
+                <option value="milliliters">Millilitres</option>
+                <option value="gallons">Gallons</option>
+            </optgroup>
+        </select>
+        <button id="convertButton" class="button">Convertir</button>
+        <div id="result">Résultat : </div>
+    </div>
 </div>
+
+<!-- Inclusion du script spécifique au convertisseur -->
 <script src="js/convertissor.js"></script>

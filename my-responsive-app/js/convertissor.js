@@ -1,35 +1,55 @@
-function convertUnits(value, fromUnit, toUnit) {
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('convertissor.js chargé');
+
+    const convertButton = document.getElementById('convertButton');
+    const inputValue = document.getElementById('inputValue');
+    const fromUnit = document.getElementById('fromUnit');
+    const toUnit = document.getElementById('toUnit');
+    const resultDiv = document.getElementById('result');
+
+    console.log('convertButton:', convertButton);
+    console.log('inputValue:', inputValue);
+    console.log('fromUnit:', fromUnit);
+    console.log('toUnit:', toUnit);
+    console.log('resultDiv:', resultDiv);
+    
+    if (!convertButton || !inputValue || !fromUnit || !toUnit || !resultDiv) {
+        console.error('Éléments introuvables dans convertissor.js');
+        return;
+    }
+    
     const conversionRates = {
         meters: 1,
-        kilometers: 0.001,
-        miles: 0.000621371,
-        feet: 3.28084,
-        inches: 39.3701,
-        grams: 1,
-        kilograms: 0.001,
-        pounds: 0.00220462,
+        kilometers: 1000,
+        miles: 1609.34,
+        feet: 0.3048,
+        inches: 0.0254,
+        grams: 0.001,
+        kilograms: 1,
+        pounds: 0.453592,
         liters: 1,
-        milliliters: 1000,
-        gallons: 0.264172,
+        milliliters: 0.001,
+        gallons: 3.78541,
     };
 
-    if (!conversionRates[fromUnit] || !conversionRates[toUnit]) {
-        throw new Error('Invalid unit');
-    }
+    convertButton.addEventListener('click', () => {
+        const value = parseFloat(inputValue.value);
+        const from = fromUnit.value;
+        const to = toUnit.value;
 
-    const valueInMeters = value / conversionRates[fromUnit];
-    return valueInMeters * conversionRates[toUnit];
-}
+        if (isNaN(value)) {
+            resultDiv.textContent = 'Veuillez entrer une valeur numérique.';
+            return;
+        }
 
-document.getElementById('convertButton').addEventListener('click', function() {
-    const value = parseFloat(document.getElementById('inputValue').value);
-    const fromUnit = document.getElementById('fromUnit').value;
-    const toUnit = document.getElementById('toUnit').value;
+        if (!conversionRates[from] || !conversionRates[to]) {
+            resultDiv.textContent = 'Unité invalide';
+            return;
+        }
 
-    try {
-        const result = convertUnits(value, fromUnit, toUnit);
-        document.getElementById('result').textContent = `Result: ${result}`;
-    } catch (error) {
-        document.getElementById('result').textContent = error.message;
-    }
+        const result = (value * conversionRates[from]) / conversionRates[to];
+        resultDiv.textContent = `Résultat : ${result.toFixed(2)}`;
+    });
+
+    console.log('Événement click attaché au bouton convertButton');
 });

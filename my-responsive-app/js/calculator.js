@@ -1,76 +1,71 @@
-// This file contains the logic for the "calculator" tab. It handles basic arithmetic operations and updates the display of results.
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('calculator.js chargé');
 
-document.addEventListener('DOMContentLoaded', function() {
     const display = document.getElementById('calculator-display');
     const buttons = document.querySelectorAll('.calculator-button');
+
+    console.log('display:', display);
+    console.log('buttons:', buttons);
+
+    if (!display || buttons.length === 0) {
+        console.error('Éléments de la calculatrice non trouvés.');
+        return;
+    }
+
     let currentInput = '';
     let operator = '';
-    let firstOperand = null;
+    let previousInput = '';
 
     buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            const value = this.innerText;
-
+        button.addEventListener('click', () => {
+            const value = button.dataset.value;
             if (value === 'C') {
-                clear();
+                currentInput = '';
+                operator = '';
+                previousInput = '';
+                display.textContent = '0';
+            } else if (['+', '-', '*', '/'].includes(value)) {
+                if (currentInput === '') return;
+                if (previousInput !== '') {
+                    calculate(); // appel de la fonction ci-dessous
+                }
+                operator = value;
+                previousInput = currentInput;
+                currentInput = '';
             } else if (value === '=') {
                 calculate();
-            } else if (['+', '-', '*', '/'].includes(value)) {
-                setOperator(value);
             } else {
-                appendToInput(value);
+                currentInput += value;
+                display.textContent = currentInput;
             }
         });
     });
 
-    function appendToInput(value) {
-        currentInput += value;
-        display.innerText = currentInput;
-    }
-
-    function setOperator(value) {
-        if (currentInput === '') return;
-        if (firstOperand === null) {
-            firstOperand = parseFloat(currentInput);
-        } else {
-            calculate();
-        }
-        operator = value;
-        currentInput = '';
-    }
-
-    function calculate() {
-        if (firstOperand === null || currentInput === '') return;
-        const secondOperand = parseFloat(currentInput);
+    const calculate = () => {
+        if (currentInput === '' || operator === '' || previousInput === '') return;
+        const num1 = parseFloat(previousInput);
+        const num2 = parseFloat(currentInput);
+        if (isNaN(num1) || isNaN(num2)) return;
         let result;
-
         switch (operator) {
-            case '+':
-                result = firstOperand + secondOperand;
-                break;
-            case '-':
-                result = firstOperand - secondOperand;
-                break;
-            case '*':
-                result = firstOperand * secondOperand;
-                break;
+            case '+': result = num1 + num2; break;
+            case '-': result = num1 - num2; break;
+            case '*': result = num1 * num2; break;
             case '/':
-                result = firstOperand / secondOperand;
+                if (num2 === 0) {
+                    display.textContent = 'Error';
+                    currentInput = '';
+                    operator = '';
+                    previousInput = '';
+                    return;
+                }
+                result = num1 / num2;
                 break;
-            default:
-                return;
+            default: return;
         }
-
-        display.innerText = result;
-        currentInput = '';
-        firstOperand = result;
+        currentInput = result.toString();
+        previousInput = '';
         operator = '';
-    }
-
-    function clear() {
-        currentInput = '';
-        firstOperand = null;
-        operator = '';
-        display.innerText = '0';
-    }
+        display.textContent = currentInput;
+    };
 });
